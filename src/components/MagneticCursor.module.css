@@ -1,0 +1,77 @@
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    transition: width 0.3s var(--ease-out-expo),
+        height 0.3s var(--ease-out-expo),
+        border-color 0.3s,
+        background 0.3s;
+    will-change: transform;
+    mix-blend-mode: difference;
+}
+
+.dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    will-change: transform;
+    mix-blend-mode: difference;
+}
+
+/* View hover — expand to oil bubble */
+.viewHover {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.85), rgba(168, 85, 247, 0.85));
+    border-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: normal;
+}
+
+.cursorText {
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* Link hover — teal-gold shrink */
+.linkHover {
+    width: 16px;
+    height: 16px;
+    border-color: rgba(13, 148, 136, 0.6);
+    background: rgba(13, 148, 136, 0.15);
+}
+
+/* Hide on mobile */
+@media (max-width: 1024px) {
+
+    .cursor,
+    .dot {
+        display: none;
+    }
+}
+
+@media (pointer: coarse) {
+
+    .cursor,
+    .dot {
+        display: none;
+    }
+}

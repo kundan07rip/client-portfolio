@@ -1,0 +1,219 @@
+.section {
+    position: relative;
+    width: 100%;
+    background: var(--color-bg);
+}
+
+.stickyContainer {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding: var(--space-xl) 0;
+}
+
+.bgGlow {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(13, 148, 136, 0.06) 0%, rgba(168, 85, 247, 0.03) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.header {
+    margin-bottom: 4rem;
+    z-index: 2;
+}
+
+.scrollContainer {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.track {
+    display: flex;
+    align-items: center;
+    gap: 15vw;
+    padding: 0 10vw;
+    will-change: transform;
+}
+
+.progressLine {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    z-index: 0;
+}
+
+.progressFill {
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    transform-origin: left;
+    scale: 0 1;
+}
+
+.entry {
+    position: relative;
+    flex-shrink: 0;
+    width: 350px;
+    z-index: 1;
+}
+
+/* Card Styling */
+.card {
+    position: relative;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.cardGlow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at top right, rgba(13, 148, 136, 0.12), rgba(168, 85, 247, 0.06) 40%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(13, 148, 136, 0.25);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(13, 148, 136, 0.06);
+}
+
+.card:hover .cardGlow {
+    opacity: 1;
+}
+
+.cardIcon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.cardYear {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: rgba(13, 148, 136, 0.08);
+    border: 1px solid rgba(13, 148, 136, 0.18);
+    border-radius: 100px;
+    color: var(--color-text-accent);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+.cardTitle {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.cardDesc {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* Dot */
+.dot {
+    position: absolute;
+    top: calc(50% + 140px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dotInner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0d9488;
+    z-index: 2;
+    box-shadow: 0 0 8px rgba(13, 148, 136, 0.5);
+}
+
+.dotPulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(13, 148, 136, 0.2);
+    animation: dotPulseAnim 2s infinite;
+}
+
+@keyframes dotPulseAnim {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Mobile Fallback */
+@media (max-width: 768px) {
+    .stickyContainer {
+        height: auto;
+        position: relative;
+        padding: var(--space-xl) 0;
+    }
+
+    .scrollContainer {
+        height: auto;
+        overflow: visible;
+    }
+
+    .track {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 var(--space-md);
+        transform: none !important;
+    }
+
+    .entry {
+        width: 100%;
+    }
+
+    .progressLine {
+        display: none;
+    }
+
+    .dot {
+        position: static;
+        transform: none;
+        margin: 1rem auto 0;
+    }
+}

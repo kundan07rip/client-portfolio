@@ -1,0 +1,405 @@
+/* ═══════════════════════════════════════════════════
+   DESIGN SYSTEM — "OILY IRIDESCENT" New-Gen Dark Theme
+   Oil-slick gradients, prismatic shimmer, premium glass
+   ═══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ── Design Tokens ──────────────────────────────── */
+:root {
+  /* Deep Midnight Ink Palette */
+  --color-bg: #050510;
+  --color-bg-alt: #0a0b1a;
+  --color-bg-card: #0e1025;
+  --color-bg-card-hover: #141733;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-hover: rgba(255, 255, 255, 0.06);
+
+  /* Oily Iridescent Gradient Palette */
+  --gradient-primary: linear-gradient(135deg, #0d9488, #a855f7, #d97706, #06b6d4);
+  --gradient-secondary: linear-gradient(135deg, #06b6d4, #8b5cf6, #f59e0b, #0d9488);
+  --gradient-accent: linear-gradient(90deg, #0d9488, #a855f7, #d97706, #06b6d4, #0d9488);
+  --gradient-warm: linear-gradient(135deg, #f59e0b, #d97706, #a855f7);
+  --gradient-cool: linear-gradient(135deg, #06b6d4, #0d9488, #8b5cf6);
+  --gradient-text: linear-gradient(135deg, #e2e8f0, #c9a96e, #06b6d4);
+  --gradient-rainbow: linear-gradient(90deg,
+      #0d9488 0%, #06b6d4 16%, #8b5cf6 33%, #a855f7 50%,
+      #d97706 66%, #f59e0b 83%, #0d9488 100%);
+  --gradient-oil: linear-gradient(135deg,
+      #0d9488 0%, #115e59 15%, #6d28d9 30%, #a855f7 45%,
+      #d97706 60%, #f59e0b 75%, #06b6d4 90%, #0d9488 100%);
+  --gradient-oil-shimmer: linear-gradient(135deg,
+      rgba(13, 148, 136, 0.15), rgba(168, 85, 247, 0.15),
+      rgba(217, 119, 6, 0.15), rgba(6, 182, 212, 0.15));
+
+  /* Text Colors */
+  --color-text: #f1f5f9;
+  --color-text-secondary: rgba(241, 245, 249, 0.65);
+  --color-text-muted: rgba(241, 245, 249, 0.38);
+  --color-text-accent: #c9a96e;
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --color-border-accent: rgba(13, 148, 136, 0.35);
+
+  /* Typography */
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 10rem;
+
+  /* Glass - Oily Glassmorphism */
+  --glass-bg: rgba(14, 16, 37, 0.55);
+  --glass-bg-strong: rgba(14, 16, 37, 0.85);
+  --glass-blur: 28px;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.05);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --glass-glow: 0 0 60px rgba(13, 148, 136, 0.08);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Layout */
+  --max-width: 1440px;
+  --nav-height: 80px;
+  --z-cursor: 9999;
+  --z-nav: 1000;
+}
+
+/* ── Reset ──────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: initial;
+}
+
+body {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* ── Typography Classes ─────────────────────────── */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.heading-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.heading-lg {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+}
+
+.body-lg {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.body-text {
+  font-family: var(--font-heading);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+/* ── Gradient Text ──────────────────────────────── */
+.gradient-text {
+  background: var(--gradient-primary);
+  background-size: 200% 200%;
+  animation: oilShift 6s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-cool {
+  background: var(--gradient-cool);
+  background-size: 200% 200%;
+  animation: oilShift 6s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Oil Shift Animation ───────────────────────── */
+@keyframes oilShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Animated Rainbow Border ────────────────────── */
+.rainbow-border {
+  position: relative;
+  background: var(--color-bg-card);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.rainbow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 20px;
+  background: var(--gradient-oil);
+  background-size: 300% 100%;
+  animation: oilSlide 6s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes oilSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* ── Container ──────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* ── Buttons ────────────────────────────────────── */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.25rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  border-radius: 100px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+  z-index: 1;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(14, 16, 37, 0.4);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: left 0.6s var(--ease-out-expo);
+  z-index: -1;
+}
+
+.btn:hover::before {
+  left: 0;
+}
+
+.btn:hover {
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(13, 148, 136, 0.25);
+}
+
+.btn-filled {
+  background: var(--gradient-primary);
+  background-size: 200% 200%;
+  animation: oilShift 4s ease-in-out infinite;
+  border: none;
+  color: white;
+}
+
+.btn-filled:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(13, 148, 136, 0.35);
+}
+
+/* ── Section Spacing ────────────────────────────── */
+.section {
+  position: relative;
+  padding: var(--space-3xl) 0;
+  overflow: hidden;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gradient-primary);
+}
+
+/* ── Noise Texture Overlay ──────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.012;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0d9488, #a855f7, #d97706);
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(13, 148, 136, 0.35);
+  color: white;
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 1024px) {
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 64px;
+  }
+
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .section {
+    padding: var(--space-xl) 0;
+  }
+}
